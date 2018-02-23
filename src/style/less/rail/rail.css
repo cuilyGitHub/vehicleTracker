@@ -1,0 +1,78 @@
+.basics-font-grey {
+  font-size: 1.5rem;
+  color: #b3b3b3;
+}
+.basics-font-black {
+  font-size: 1.5rem;
+  color: #595959;
+}
+.small-font-grey {
+  font-size: 1.5rem;
+  color: #b3b3b3;
+}
+.small-font-black {
+  font-size: 1.5rem;
+  color: #595959;
+}
+.rail {
+  margin: 1rem;
+}
+.rail .card {
+  background: white;
+  margin-bottom: 1.5rem;
+  box-shadow: 2px 1px 2px 0px #ccc;
+}
+.rail .card .head {
+  height: 4rem;
+  line-height: 4rem;
+  padding: 0 1.5rem;
+  border-bottom: 1px solid #ebebeb;
+}
+.rail .card .head .name {
+  font-size: 1.5rem;
+  color: #595959;
+  width: 12rem;
+  float: left;
+}
+.rail .card .head .gps,
+.rail .card .head .del {
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  margin: 0.5rem;
+  background: red;
+  float: right;
+}
+.rail .card .head .del {
+  margin-left: 1.5rem;
+}
+.rail .card .panel {
+  overflow: hidden;
+  margin: 1.5rem;
+}
+.rail .card .panel .left-box {
+  float: left;
+}
+.rail .card .panel .left-box .li {
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 1.5rem;
+  color: #b3b3b3;
+}
+.rail .card .panel .left-box .li .title {
+  display: block;
+  float: left;
+  width: 7rem;
+}
+.rail .card .panel .left-box .li .in {
+  display: block;
+  float: left;
+  color: #00722e;
+  margin-right: 1.5rem;
+}
+.rail .card .panel .right-box {
+  width: 1rem;
+  background: red;
+  float: right;
+  height: 8rem;
+}

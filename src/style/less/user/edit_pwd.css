@@ -1,0 +1,69 @@
+.basics-font-grey {
+  font-size: 1.5rem;
+  color: #b3b3b3;
+}
+.basics-font-black {
+  font-size: 1.5rem;
+  color: #595959;
+}
+.basics-font-white {
+  font-size: 1.5rem;
+  color: white;
+}
+.small-font-grey {
+  font-size: 1.3rem;
+  color: #b3b3b3;
+}
+.small-font-black {
+  font-size: 1.3rem;
+  color: #595959;
+}
+.small-font-white {
+  font-size: 1.3rem;
+  color: white;
+}
+.edit-panel {
+  margin-top: 1.5rem;
+}
+.edit-panel .new-panel {
+  height: 4rem;
+  line-height: 4rem;
+  background: white;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #ebebeb;
+}
+.edit-panel .new-panel .old {
+  width: 100%;
+  height: 3rem;
+  font-size: 1.3rem;
+  color: #595959;
+}
+.edit-panel .new-panel .new {
+  width: 80%;
+  height: 3rem;
+  font-size: 1.3rem;
+  color: #595959;
+}
+.edit-panel .new-panel .visual {
+  display: block;
+  float: right;
+  width: 2rem;
+  height: 2rem;
+  margin: 1rem 0.5rem;
+  background: red;
+}
+.edit-panel .push .pwd-des {
+  margin: 1.5rem 1rem;
+  font-size: 1.3rem;
+  color: #b3b3b3;
+}
+.edit-panel .push .pwd-btn {
+  height: 5rem;
+  margin: 1rem;
+  line-height: 5rem;
+  text-align: center;
+  background: #1e9aeb;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  color: white;
+}

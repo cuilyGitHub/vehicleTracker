@@ -1,0 +1,35 @@
+.edit-panel {
+  margin-top: 1.5rem;
+}
+.edit-panel .pwd-des {
+  margin: 1.5rem 1rem;
+  font-size: 1.2rem;
+  color: #b3b3b3;
+}
+.edit-panel .input-panel {
+  height: 4rem;
+  line-height: 4rem;
+  background: white;
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+  border-bottom: 1px solid #ebebeb;
+}
+.edit-panel .input-panel .code {
+  width: 10rem;
+  height: 4rem;
+  background: red;
+  float: right;
+}
+.edit-panel .push .btn {
+  height: 5rem;
+  margin: 1rem;
+  line-height: 5rem;
+  text-align: center;
+  background: #1e9aeb;
+  color: white;
+  border-radius: 5px;
+}
+.edit-panel .link {
+  color: #595959;
+  border-bottom: #ebebeb;
+}

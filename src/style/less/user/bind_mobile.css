@@ -1,0 +1,36 @@
+.edit-panel {
+  margin-top: 1.5rem;
+}
+.edit-panel .pwd-des {
+  margin: 1.5rem 1rem;
+  font-size: 1.2rem;
+  text-align: center;
+  color: #b3b3b3;
+}
+.edit-panel .input-panel {
+  height: 4rem;
+  line-height: 4rem;
+  background: white;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #ebebeb;
+  font-size: 1.5rem;
+}
+.edit-panel .input-panel .code {
+  width: 10rem;
+  height: 4rem;
+  background: red;
+  float: right;
+}
+.edit-panel .push .pwd-btn {
+  height: 5rem;
+  margin: 1rem;
+  line-height: 5rem;
+  text-align: center;
+  background: #b3b3b3;
+  color: white;
+  border-radius: 5px;
+  font-size: 1.5rem;
+}
+.edit-panel .push .btn-select {
+  background: #1e9aeb;
+}

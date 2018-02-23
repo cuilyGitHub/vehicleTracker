@@ -1,0 +1,81 @@
+/*项目颜色配置文件*/
+.basics-font-grey {
+  font-size: 1.5rem;
+  color: #b3b3b3;
+}
+.basics-font-black {
+  font-size: 1.5rem;
+  color: #595959;
+}
+.basics-font-white {
+  font-size: 1.5rem;
+  color: white;
+}
+.small-font-grey {
+  font-size: 1.3rem;
+  color: #b3b3b3;
+}
+.small-font-black {
+  font-size: 1.3rem;
+  color: #595959;
+}
+.small-font-white {
+  font-size: 1.3rem;
+  color: white;
+}
+.smallx-font-grey {
+  font-size: 1.2rem;
+  color: #b3b3b3;
+}
+.smallx-font-black {
+  font-size: 1.2rem;
+  color: #595959;
+}
+.smallx-font-white {
+  font-size: 1.2rem;
+  color: white;
+}
+.mask {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  background: #000;
+  z-index: 2000;
+}
+.box {
+  margin-top: 0.5rem;
+  padding: 1.5rem;
+  background: white;
+  padding: 0;
+}
+.box ul li {
+  font-size: 1.3rem;
+  color: #595959;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  border-bottom: 1px solid #f2f2f2;
+  padding: 0 1.5rem;
+}
+.box ul li span {
+  display: block;
+}
+.box ul li .name {
+  float: left;
+  width: 30.5rem;
+}
+.box ul li .copy {
+  float: left;
+  width: 15rem;
+}
+.box ul li .right-value {
+  float: right;
+  margin-right: 1rem;
+}
+.box ul li .select {
+  background: url("/static/image/check.png") no-repeat right;
+  background-size: 5rem;
+}

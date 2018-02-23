@@ -1,0 +1,51 @@
+@import '../../base/base.less';
+.list{
+    margin-top: 0.1rem;
+    background: @white;
+    li{
+        padding: 0 0.5rem;
+        height: 1.5rem;
+        line-height: 1.5rem;
+        .smallx-font-black;
+        border-bottom: 1px solid @grey-xxs;
+        span{
+            display: block;
+            float: left;
+        }
+        .name{
+            //width: 5rem;
+            margin-right: 0.5rem;
+        }
+        .right-value{
+            float: right;
+            margin-right: 1rem;
+        }
+        .right-arrow{
+            float: right;
+            height: 1.5rem;
+            width: 1rem;
+            background: url("../../../../static/image/more.png") no-repeat center;
+            background-size: 2rem;
+        }
+        .switch{
+            margin: 0.25rem 0;
+            float: right;
+            height: 1rem ;
+        }
+        .time{
+            border-right: 1px solid  @grey-xxs;
+            //padding-right: 0.5rem;
+            width: 2.4rem;
+        }
+        .day{
+            margin:0 0.25rem;
+            width: 4.4rem;
+            overflow: hidden;
+            .smallxx-font-black;
+        }
+        .router{
+            text-decoration:none;
+            .smallx-font-black;
+        }
+    }
+}

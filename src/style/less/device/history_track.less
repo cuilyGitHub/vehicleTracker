@@ -1,0 +1,37 @@
+@import '../../base/color.less';
+    .tool-bar{
+      padding: 0.3rem;
+      background:@white;
+      .play-rate{
+        display: flex;
+        justify-content: space-around;
+        >span{
+          display: inline-block;
+          flex: 1;
+          max-width: 1rem;
+          text-align: center;
+          height: 0.75rem;
+          line-height: 0.75rem;
+          //border: solid 1px @grey-s;
+          border-radius: 0.1rem;
+          .smallx-font-black;
+
+        }
+      }
+    }
+    .range{
+      height: 0.5rem;
+      margin: 0.5rem 0;
+    }
+    .info{
+      display: flex;
+      justify-content: space-between;
+      >span{
+        display: inline-block;
+        .smallx-font-black;
+      }
+    }
+.rate-active{
+  color: @blue;
+  font-weight: bold;
+}

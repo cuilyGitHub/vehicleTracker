@@ -1,0 +1,78 @@
+@import '../../base/base.less';
+.loading{
+  display: block;
+  margin-left: 47%;
+  //margin-top: 15px;
+}
+.massage-list-wrapper{
+  margin: 0.3rem;
+  overflow: scroll;
+  .massage-list{
+    margin-bottom: 0.3rem;
+    .massage-list-listitem{
+        box-shadow: 0px 2px 5px rgba(203, 203, 203, 0.5);
+        .date{
+          height: 1rem;
+          line-height: 1rem;
+          text-align: center;
+          margin: 0.3rem 0;
+          .smallx-font-grey;
+        }
+        .content{
+          background: @white;
+          .line{
+            li{
+              /*height: 3rem;*/
+              line-height: 1rem;
+              padding: 0 0.3rem;
+              .small-font-black;
+              span{
+                display: block;
+                float: left;
+              }
+              p{
+                /*height: 3rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;*/
+                width: 6.5rem;
+                float: left;
+              }
+              .name{
+                width: 2rem;
+                margin-right: 0.2rem;
+                .smallx-font-black;
+                .booth:first-of-type{
+                  margin-right: 1.5rem;
+                }
+                .booth:last-of-type{
+                  margin-left: 1.2rem;
+                }
+              }
+              .blue-value{
+                color: @blue;
+              }
+              .right-value{
+                float: right;
+                width: 2rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                font-size: 1.2rem;
+                color: @blue !important;
+                .smallx-font-black;
+              }
+              .right-arrow{
+                float: right;
+                height: 1rem;
+                width: 0.25rem;
+                background: url("../../../../static/image/more.png") no-repeat center;
+                background-size: 1rem;
+              }
+            }
+          }
+        }
+
+    }
+  }
+}

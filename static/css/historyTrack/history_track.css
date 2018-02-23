@@ -1,0 +1,59 @@
+
+/* 播放插件样式 */
+.tool-bar{
+  padding: 0.3rem;
+  background:white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.tool-bar .play-rate{
+  display: flex;
+  justify-content: space-around;
+}
+.tool-bar .play-rate .rate{
+  display: inline-block;
+  flex: 1;
+  max-width: 1.5rem;
+  text-align: center;
+  height: 0.75rem;
+  line-height: 0.75rem;
+  border-radius: 0.1rem;
+  font-size: 0.4rem;
+  color: #595959;
+
+}
+.tool-bar .play-rate .rate-active{
+  color: #1e9aeb !important;
+  font-weight: bold;
+}
+
+.slider-box{
+  margin: 0.5rem 0;
+}
+.slider-box .slider{
+  float: right;
+  width: 8rem;
+}
+
+.info{
+  display: flex;
+  justify-content: space-between;
+}
+.info span{
+  display: inline-block;
+  font-size: 0.4rem;
+  color: #595959;
+}
+.info .time{
+  padding-top: 2px;
+}
+
+#time-slider .ui-slider-range {
+  background: #729fcf;
+}
+#time-slider .ui-slider-handle{
+  border-color: #729fcf;
+}

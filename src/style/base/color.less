@@ -1,0 +1,101 @@
+/*项目颜色配置文件*/
+
+// 因为mimt-ui样式问题，使用mt-cell-swipe和mt-cell时border无法顶到最左边，所以最终版确定的话吧lib/style.css进行就该
+//修改如下:
+// .mint-cell:last-child {
+//     background-image:-webkit-linear-gradient(bottom, white, white 50%, transparent 50%);
+//     background-image:linear-gradient(0deg, white, white 50%, transparent 50%);
+// }
+// .mint-cell-wrapper {
+//     border-bottom: 1px solid #ebebeb;
+//     background-image:-webkit-linear-gradient(top, white, white 50%, transparent 50%);
+//     background-image:linear-gradient(180deg, white, white 50%, transparent 50%);
+// }
+
+//因为mimt-ui样式问题,使用mt-swipe-item 选中状态不明显  改成以下样式
+/*.mint-swipe-indicator {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border-radius: 100%;
+  opacity: 0.2;
+  margin: 0 3px;
+  border: 1px solid #000000;
+}
+.mint-swipe-indicator.is-active {
+  background: #000;
+}*/
+
+
+@white:white;
+@white-d:#fcfcfc;
+@grey-s:#b3b3b3;
+@grey-d:#616161;
+@grey-xs:#ebebeb;
+@grey-xxs:#f2f2f2;
+@black:#595959;
+@blue:#1e9aeb;
+@blue-s:#b8e3fe;
+@green:#00722e;
+@red:red;
+
+
+.basics-font-grey{
+    font-size: 0.5rem;
+    color: @grey-s;
+}
+.basics-font-black{
+    font-size: 0.5rem;
+    color: @black;
+}
+.basics-font-white{
+    font-size: 0.5rem;
+    color: @white;
+}
+.small-font-grey{
+    font-size: 0.45rem;
+    color: @grey-s;
+}
+.small-font-black{
+    font-size: 0.45rem;
+    color: @black;
+}
+.small-font-white{
+    font-size: 0.45rem;
+    color: @white;
+}
+.smallx-font-grey{
+  font-size: 0.4rem;
+  color: @grey-s;
+}
+.smallx-font-black{
+  font-size: 0.4rem;
+  color: @black;
+}
+.smallx-font-white{
+  font-size: 0.4rem;
+  color: @white;
+}
+.smallx-font-blue{
+  font-size: 0.4rem;
+  color: @blue;
+}
+.smallxx-font-black{
+  font-size: 0.35rem;
+  color: @black;
+}
+.smallxx-font-white{
+  font-size: 0.35rem;
+  color: @white;
+}
+.mask{
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background: #000;
+    z-index: 2000;
+}

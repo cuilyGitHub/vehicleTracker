@@ -1,0 +1,51 @@
+@import '../../base/base.less';
+.my-loadmore{
+  .smallx-font-black;
+}
+.list{
+  background: @white;
+  margin-bottom: 2rem;
+  //border-top:1px solid @grey-xs;
+  li{
+    border-bottom:1px solid @grey-xs;
+    img{
+      height:1.5rem;
+      width:1.5rem;
+      margin: 0.3rem 0.2rem 0.3rem 0.3rem;
+      float: left;
+    }
+    .unread{
+      position: absolute;
+      width: 3.4rem;
+      height: 0.8rem;
+      background:url("../../../../static/image/unread.png") no-repeat center;
+      background-size: 15px;
+    }
+    .content{
+      float: left;
+      margin: 0.3rem 0;
+      .number,.name {
+        height: 0.75rem;
+        line-height: 0.75rem;
+        .smallx-font-black;
+      }
+    }
+    .time{
+      overflow: hidden;
+      margin: 0.3rem 0;
+      /*width: 10rem;*/
+      float: right;
+      height: 1.5rem;
+      line-height: 1.5rem;
+      .smallx-font-black;
+    }
+    .arrow{
+      float: right;
+      width: 0.5rem;
+      background:url("../../../../static/image/more.png") no-repeat center;
+      background-size: 1rem;
+      height:2rem;
+      margin: 0 0.3rem 0 0.1rem;
+    }
+  }
+}

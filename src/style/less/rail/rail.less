@@ -1,0 +1,67 @@
+@import '../../base/base.less';
+.rail {
+  margin: 0.3rem;
+  .card {
+    background: @white;
+    margin-bottom: 0.5rem;
+    box-shadow: 2px 1px 2px 0px #ccc;
+    .head {
+      height: 1.2rem;
+      line-height: 1.2rem;
+      padding: 0 0.3rem;
+      border-bottom: 1px solid @grey-xs;
+      .name {
+        .small-font-black;
+        width: 5rem;
+        float: left;
+      }
+      .gps, .del {
+        display: block;
+        width: 1rem;
+        height: 1rem;
+        margin: 0.1rem;
+        float: right;
+      }
+      .del {
+        background: url("../../../../static/image/del.png") no-repeat center;
+        background-size: 1rem;
+      }
+      .gps {
+        background: url("../../../../static/image/mapShow.png") no-repeat center;
+        background-size: 1rem;
+      }
+    }
+    .panel {
+      overflow: hidden;
+      margin: 0.3rem;
+      .left-box {
+        //width: 97%;
+        float: left;
+        .li {
+          height: 1rem;
+          line-height: 1rem;
+          .smallx-font-grey;
+          .title {
+            display: block;
+            float: left;
+            width: 2.5rem;
+          }
+          .in {
+            display: block;
+            float: left;
+            color: @green;
+            margin-right: 0.5rem;
+          }
+        }
+      }
+      .right-box {
+        width: 0.25rem;;
+        background: url("../../../../static/image/more.png") no-repeat center;
+        background-size: 1rem;
+        float: right;
+        height: 2.5rem;
+      }
+
+    }
+  }
+}

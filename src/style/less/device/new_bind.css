@@ -1,0 +1,186 @@
+/*项目颜色配置文件*/
+.basics-font-grey {
+  font-size: 1.5rem;
+  color: #b3b3b3;
+}
+.basics-font-black {
+  font-size: 1.5rem;
+  color: #595959;
+}
+.basics-font-white {
+  font-size: 1.5rem;
+  color: white;
+}
+.small-font-grey {
+  font-size: 1.3rem;
+  color: #b3b3b3;
+}
+.small-font-black {
+  font-size: 1.3rem;
+  color: #595959;
+}
+.small-font-white {
+  font-size: 1.3rem;
+  color: white;
+}
+.smallx-font-grey {
+  font-size: 1.2rem;
+  color: #b3b3b3;
+}
+.smallx-font-black {
+  font-size: 1.2rem;
+  color: #595959;
+}
+.smallx-font-white {
+  font-size: 1.2rem;
+  color: white;
+}
+.mask {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  background: #000;
+  z-index: 2000;
+}
+.bindthing .input {
+  margin-top: 0.5rem;
+  height: 3rem;
+  line-height: 3rem;
+  background: white;
+  width: 29.5rem;
+  padding: 1rem 1rem 1rem 1.5rem;
+  font-size: 1.3rem;
+  color: #595959;
+  box-shadow: 2px 1px 2px 0px #ccc;
+}
+.bindthing .des {
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 1.3rem;
+  color: #b3b3b3;
+  padding-left: 1.5rem;
+}
+.box {
+  margin-top: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 2px 1px 2px 0px #ccc;
+  background: white;
+  overflow: hidden;
+}
+.box .device img {
+  height: 5rem;
+  width: 5rem;
+  margin-right: 1.5rem;
+  float: right;
+  border-radius: 50%;
+}
+.box .device .photo {
+  float: left;
+  width: 6rem;
+  height: 5rem;
+  line-height: 5rem;
+  font-size: 1.3rem;
+  color: #595959;
+}
+.box .device .arrow {
+  float: right;
+  width: 1.5rem;
+  background: url("/static/image/more.png") no-repeat center;
+  background-size: 4rem;
+  height: 5rem;
+}
+.box:first-of-type {
+  margin-top: 0.5rem;
+}
+.other-operation {
+  padding: 0;
+}
+.other-operation .order-type {
+  height: 4.5rem;
+  line-height: 4.5rem;
+  padding: 0 0 0 1.5rem;
+  border-bottom: 1px solid #f2f2f2;
+  font-size: 1.3rem;
+  color: #595959;
+}
+.other-operation .order-type .title {
+  float: left;
+  width: 9rem;
+}
+.other-operation .order-type .pull-down {
+  float: right;
+  width: 4.5rem;
+  height: 4.5rem;
+  background: url("/static/image/pullDown.png") no-repeat center;
+  background-size: 5rem;
+}
+.other-operation .show {
+  display: block !important;
+}
+.other-operation .label-list {
+  display: none;
+  padding: 1.5rem 1.5rem 0 0;
+}
+.other-operation .label-list .label {
+  height: 4rem;
+  line-height: 4rem;
+  width: 8.6rem;
+  float: left;
+  font-size: 1.3rem;
+  color: #595959;
+  text-align: center;
+  background: #ebebeb;
+  margin: 0 0 1.5rem 1.5rem;
+}
+.other-operation .label-list .select {
+  background: #b8e3fe;
+}
+.other-operation .list {
+  display: none;
+}
+.other-operation .list .li {
+  font-size: 1.3rem;
+  color: #595959;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  border-bottom: 1px solid #f2f2f2;
+  padding: 0 1.5rem;
+}
+.other-operation .list .li .car-number {
+  float: right;
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  margin: 1rem 0.5rem;
+  border: 1px solid #00722e;
+  text-align: center;
+}
+.other-operation .list .li .right-value {
+  float: right;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  margin-right: 0.5rem;
+}
+.other-operation .list .li .right-arrow {
+  float: right;
+  width: 1.5rem;
+  background: url("/static/image/more.png") no-repeat center;
+  background-size: 4rem;
+  height: 4.5rem;
+}
+.btn {
+  height: 4rem;
+  line-height: 4rem;
+  background: red;
+  margin: 1rem 1rem 1.5rem 1rem;
+  font-size: 1.3rem;
+  color: white;
+  text-align: center;
+}
+.confirm {
+  background: #1e9aeb;
+}

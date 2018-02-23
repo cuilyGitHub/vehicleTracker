@@ -1,0 +1,35 @@
+@import '../../base/base.less';
+.box {
+  margin-top: 0.2rem;
+  padding: 0.3rem;
+  background: @white;
+  padding: 0;
+  ul{
+    li{
+      .smallx-font-black;
+      height: 1.5rem;
+      line-height:1.5rem;
+      border-bottom:1px solid @grey-xxs;
+      padding:0 0.3rem;
+      span{
+        display: block;
+      }
+        .name{
+            float: left;
+            width: 100%;
+        }
+        .copy{
+            float: left;
+            width: 1.5rem;
+        }
+        .right-value{
+            float: right;
+            margin-right: 0.2rem;
+        }
+      .select{
+        background: url("../../../../static/image/check.png") no-repeat right;
+        background-size: 1.2rem;
+      }
+    }
+  }
+}

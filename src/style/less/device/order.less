@@ -1,0 +1,100 @@
+@import '../../base/base.less';
+.box {
+  margin-top: 0.3rem;
+  padding: 0.3rem;
+  box-shadow: 2px 1px 2px 0px #ccc;
+  background: @white;
+  overflow: hidden;
+  .device {
+    img {
+      height: 1.5rem;
+      width: 1.5rem;
+      margin-right: 0.3rem;
+      float: left;
+      border-radius: 50%;
+    }
+    .content {
+      float: left;
+      .number, .name {
+        height: 0.75rem;
+        line-height: 0.75rem;
+        .smallx-font-black;
+      }
+    }
+    .arrow {
+      float: right;
+      width: 0.5rem;
+      background: url("../../../../static/image/more.png") no-repeat center;
+      background-size: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+}
+.box:first-of-type{
+  margin-top: 0.3rem;
+}
+.other-operation{
+  padding: 0;
+  .order-type{
+    height: 1.5rem;
+    line-height:1.5rem;
+    padding:0 0 0 0.3rem;
+    border-bottom:1px solid @grey-xxs;
+    .small-font-black;
+    .title{
+      float: left;
+      width: 3rem;
+    }
+    .pull-down{
+      float: right;
+      width: 1.5rem;
+      height: 1.5rem;
+      background: url("../../../../static/image/pullDown.png") no-repeat center;
+      background-size: 1.5rem;
+    }
+  }
+  .show{
+    display: block !important;
+  }
+  ul{
+    display: none;
+    li{
+      .smallx-font-black;
+      height: 1.5rem;
+      line-height:1.5rem;
+      border-bottom:1px solid @grey-xxs;
+      padding:0 0.3rem;
+      span{
+        display: block;
+      }
+      .name{
+        float: left;
+        width: 9.5rem;
+      }
+      .input{
+        float: left;
+        height: 1.5rem;
+        line-height:1.5rem;
+        width: 5rem;
+        .smallx-font-black;
+      }
+      .execution{
+        display: block;
+        background: @blue;
+        float: right;
+        height: 1rem;
+        line-height: 1rem;
+        width: 3rem;
+        text-align: center;
+        border-radius: 5px;
+        cursor: pointer;
+        .smallx-font-white;
+        margin: 0.25rem 0;
+      }
+      .select{
+        background: url("../../../../static/image/check.png") no-repeat right;
+        background-size: 1.5rem;
+      }
+    }
+  }
+}

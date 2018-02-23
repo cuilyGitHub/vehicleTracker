@@ -1,0 +1,36 @@
+@import '../../base/base.less';
+.box {
+  padding: 0.3rem;
+  box-shadow: 2px 1px 2px 0px #ccc;
+  background: @white;
+  overflow: hidden;
+}
+.other-operation{
+  padding: 0;
+  ul{
+    li{
+      .small-font-black;
+      height: 1.5rem;
+      line-height:1.5rem;
+      border-bottom:1px solid @grey-xxs;
+      padding:0 0.3rem;
+      span{
+        display: block;
+      }
+      .name{
+        float: left;
+        width: 9.5rem;
+      }
+      .input{
+        float: left;
+        height: 4.5rem;
+        line-height:4.5rem;
+        width: 20rem;
+      }
+      .select{
+        background: url("../../../../static/image/check.png") no-repeat right;
+        background-size: 1rem;
+      }
+    }
+  }
+}

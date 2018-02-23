@@ -1,0 +1,86 @@
+//基础样式文件
+@import '../base/color.less';
+
+/* 清除浮动影响 */
+.clearfix:after{
+  content:".";
+  display:block;
+  height:0;
+  clear:both;
+  visibility:hidden
+}
+.clearfix{
+  zoom: 1;
+}
+
+/* 按钮*/
+
+/*两边有间距，没有定位在底部的*/
+.blue-btn{
+  height: 1.5rem;
+  margin: 0.3rem;
+  line-height: 1.5rem;
+  text-align: center;
+  background: @blue !important;
+  color:@white !important;
+  border-radius:5px;
+  .smallx-font-white;
+}
+.red-btn{
+  height: 1.5rem;
+  margin: 0.3rem;
+  line-height: 1.5rem;
+  text-align: center;
+  background: @red;
+  color:@white;
+  border-radius:5px;
+  .smallx-font-white;
+}
+.grey-btn{ //灰色白字按钮
+  height: 1.5rem;
+  margin: 0.3rem;
+  line-height: 1.5rem;
+  text-align: center;
+  background: @grey-s;
+  color:@white;
+  border-radius:5px;
+  .smallx-font-white;
+}
+
+/*无间距，固定在底部*/
+
+.white-bottom-btn{  /*白底红字*/
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  border-top: 1px solid @grey-xxs;
+  background: @white;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  .smallx-font-white;
+  text-align: center;
+  color:@red;
+}
+
+.blue-bottom-btn{ /*蓝底白字*/
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  border-top: 1px solid @grey-xxs;
+  background: @blue;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  .smallx-font-white;
+  text-align: center;
+}
+
+/* 虚线框按钮 */
+.dashed-btn {
+  height: 2rem;
+  line-height:2rem;
+  .smallx-font-blue;
+  text-align: center;
+  border-radius: 5px;
+  margin: 0.3rem;
+  border:1px dashed @blue;
+}

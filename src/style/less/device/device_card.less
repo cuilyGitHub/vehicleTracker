@@ -1,0 +1,142 @@
+@import '../../base/base.less';
+.box{
+  margin-top: 0.3rem;
+  padding: 0.3rem;
+  box-shadow: 2px 1px 2px 0px #ccc;
+  background:@white;
+  overflow: hidden;
+  .device{
+    img{
+      height:1.5rem;
+      width:1.5rem;
+      margin-right: 0.5rem;
+      float: left;
+      border-radius: 50%;
+    }
+    .content{
+      float: left;
+      /*.number,.name {
+        height: 0.7rem;
+        line-height: 1rem;
+        .smallx-font-black;
+      }*/
+      .number{
+        .title{
+          float: left;
+          .smallx-font-black;
+        }
+        .serialNo{
+          .smallx-font-black;
+          float: left;
+          width: 3rem;
+          word-wrap: break-word;
+          word-break: break-all;
+        }
+      }
+    }
+    .arrow{
+      float: right;
+      width: 1.5rem;
+      background: url("../../../../static/image/more.png") no-repeat center;
+      background-size: 1.5rem;
+      height:1.5rem;
+    }
+  }
+  .status{
+    li{
+      .smallx-font-black;
+      margin-bottom: 0.3rem;
+      span{
+        display: block;
+        float: left;
+      }
+      .name{
+        width: 2rem;
+        span{
+          display: block;
+          float: left;
+          margin-right: 0.1rem;
+        }
+      }
+      .value{
+
+      }
+      .chart{
+        float: right;
+        margin-right: 0.3rem;
+        .smallx-font-grey;
+        color: @red;
+      }
+    }
+  }
+  .btn-list{
+    margin-top: 0.2rem;
+    overflow: hidden;
+    .btn{
+      display: block;
+      float: left;
+      height: 1rem;
+      line-height:1rem;
+      width:2.5rem;
+      margin-right: 0.9rem !important;
+      .small-font-white;
+      text-align: center;
+      background: @blue;
+    }
+    .no-margin{
+      .btn{
+        margin-right: 0 !important;
+      }
+
+    }
+
+  }
+
+}
+.box:first-of-type{
+  margin-top: 0.3rem;
+}
+.other-operation{
+  padding: 0;
+  ul{
+    li{
+      .smallx-font-black;
+      height: 1.5rem;
+      line-height:1.5rem;
+      border-bottom:1px solid @grey-xxs;
+      padding:0 0.3rem;
+      span{
+        display: block;
+      }
+      .name{
+        float: left;
+        width: 2.5rem;
+        .two{
+          display: block;
+          float: left;
+          margin-right:0.8rem;
+        }
+        .three{
+          display: block;
+          float: left;
+          margin-right: 0.2rem;
+        }
+      }
+      .left{
+        float: left;
+      }
+      .right{
+        float: right;
+        margin-right: 0.2rem;
+        .small-font-grey;
+      }
+      .right-arrow{
+        float: right;
+        width: 0.5rem;
+        background: url("../../../../static/image/more.png") no-repeat center;
+        background-size: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+  }
+}

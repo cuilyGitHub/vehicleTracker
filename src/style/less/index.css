@@ -1,0 +1,176 @@
+/*项目颜色配置文件*/
+.basics-font-grey {
+  font-size: 1.5rem;
+  color: #b3b3b3;
+}
+.basics-font-black {
+  font-size: 1.5rem;
+  color: #595959;
+}
+.basics-font-white {
+  font-size: 1.5rem;
+  color: white;
+}
+.small-font-grey {
+  font-size: 1.3rem;
+  color: #b3b3b3;
+}
+.small-font-black {
+  font-size: 1.3rem;
+  color: #595959;
+}
+.small-font-white {
+  font-size: 1.3rem;
+  color: white;
+}
+.smallx-font-grey {
+  font-size: 1.2rem;
+  color: #b3b3b3;
+}
+.smallx-font-black {
+  font-size: 1.2rem;
+  color: #595959;
+}
+.smallx-font-white {
+  font-size: 1.2rem;
+  color: white;
+}
+.list {
+  width: 3rem;
+  height: 3rem;
+  background: red;
+  position: absolute;
+  right: 1.5rem;
+  bottom: 12rem;
+  z-index: 9999;
+}
+.device {
+  display: none;
+  position: absolute;
+  top: 10%;
+  left: 1.5rem;
+  right: 1.5rem;
+  width: 28rem;
+  background: rgba(255, 255, 255, 0.9);
+}
+.device .content-panel {
+  width: 25rem;
+  padding: 0 0 0 1.5rem;
+  overflow: hidden;
+}
+.device .content-panel .left {
+  width: 24rem;
+  float: left;
+}
+.device .content-panel .left .li {
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 1.3rem;
+  color: #595959;
+}
+.device .content-panel .left .li .name {
+  width: 8rem;
+  display: block;
+  float: left;
+}
+.device .content-panel .left .li .value {
+  display: block;
+  float: left;
+  width: 15rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.device .content-panel .right-arrow {
+  background: url("/static/image/more.png") no-repeat center;
+  background-size: 5rem;
+  width: 1rem;
+  height: 15rem;
+  float: left;
+}
+.device .btn-panel {
+  padding: 1rem 1.5rem;
+  overflow: hidden;
+  clear: both;
+}
+.device .btn-panel .btn {
+  float: left;
+  height: 3rem;
+  line-height: 3rem;
+  text-align: center;
+  width: 7.5rem;
+  margin-right: 1rem;
+  font-size: 1.3rem;
+  color: white;
+  background: #1e9aeb;
+}
+.device .btn-panel .btn:last-of-type {
+  margin-right: 0;
+}
+.footer {
+  height: 5.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  position: fixed;
+  bottom: 0;
+}
+.footer .icon {
+  width: 25vw;
+  height: 5.5rem;
+  float: left;
+  margin: 0.5rem 0;
+}
+.footer .icon span {
+  display: block;
+  width: 20vw;
+  margin: 0 2.5vw;
+}
+.footer .icon .title {
+  font-size: 1.5rem;
+  color: #595959;
+  text-align: center;
+  margin-top: 0.5rem;
+  padding-left: 0.2rem;
+}
+.footer .icon .titleSelect {
+  color: #1e9aeb;
+}
+.footer .icon .monitor {
+  height: 2.5rem;
+  background: url('/static/image/monitoring.png') no-repeat center;
+  background-size: 3.5rem;
+}
+.footer .icon .monitorSelect {
+  height: 2.5rem;
+  background: url('/static/image/monitoringSelect.png') no-repeat center;
+  background-size: 3.5rem;
+}
+.footer .icon .statistics {
+  height: 2.5rem;
+  background: url('/static/image/statistics.png') no-repeat center;
+  background-size: 3.5rem;
+}
+.footer .icon .statisticsSelect {
+  height: 2.5rem;
+  background: url('/static/image/statisticsSelect.png') no-repeat center;
+  background-size: 3.5rem;
+}
+.footer .icon .message {
+  height: 2.5rem;
+  background: url('/static/image/massage.png') no-repeat center;
+  background-size: 3.5rem;
+}
+.footer .icon .massageSelect {
+  height: 2.5rem;
+  background: url('/static/image/massageSelect.png') no-repeat center;
+  background-size: 3.5rem;
+}
+.footer .icon .my {
+  height: 2.5rem;
+  background: url('/static/image/me.png') no-repeat center;
+  background-size: 3.5rem;
+}
+.footer .icon .mySelect {
+  height: 2.5rem;
+  background: url('/static/image/meSelect.png') no-repeat center;
+  background-size: 3.5rem;
+}
