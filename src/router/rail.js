@@ -13,7 +13,7 @@ const railList = [
     path:'/railcard/:id',
     name:'railcard',
     meta:{
-      keepAlive:true,
+      keepAlive:false,
       title:'新建电子围栏'
     },
     component:resolve => require(['@/page/rail/rail_card'],resolve)

@@ -9,8 +9,8 @@
                 placeholder="不能使用现在的功能了？能方便我们迅速解决问题"></textarea>
       <span class="max">{{remnant}}/200</span>
     </div>
-    <div class="img-container">
-      <el-upload action="http://jsonplaceholder.typicode.com/posts/"
+    <div class="img-container clearfix">
+      <!--<el-upload action="http://jsonplaceholder.typicode.com/posts/"
                  list-type="picture-card"
                  :auto-upload="false"
                  :multiple="true"
@@ -18,7 +18,19 @@
                  :on-preview="handlePictureCardPreview"
                  :on-remove="handleRemove">
         <i class="el-icon-plus"></i>
-      </el-upload>
+      </el-upload>-->
+      <div class="base64-upload">
+        <img :src="oneImg"  alt=""/>
+        <input type="file"  accept="image/*" @change="changeImg(1)" />
+      </div>
+      <div class="base64-upload">
+        <img :src="twoImg"  alt=""/>
+        <input type="file"  accept="image/*" @change="changeImg(2)" />
+      </div>
+      <div class="base64-upload">
+        <img :src="threeImg"  alt=""/>
+        <input type="file"  accept="image/*" @change="changeImg(3)" />
+      </div>
     </div>
     <div class="box">
       <input class="phone" type="number" placeholder="手机号" v-model="phone"/>
@@ -33,6 +45,12 @@
     name: 'feedback',
     data () {
       return {
+        oneImg:this.$api.root+"/wechat/static/image/photo.png",
+        twoImg:this.$api.root+"/wechat/static/image/photo.png",
+        threeImg:this.$api.root+"/wechat/static/image/photo.png",
+        imgList1:null,
+        imgList2:null,
+        imgList3:null,
         desc: '',
         imgList:[],
         remnant: 0,
@@ -46,6 +64,9 @@
           suggest:"",
           type:"",
           phone:"",
+          image1:'',
+          image2:'',
+          image3:''
         }
       }
     },
@@ -56,15 +77,64 @@
 
     },
     methods: {
+      changeImg(number) {
+        let that = this;
+        if (event.target.files && event.target.files[0]) {
+          let file = event.target.files[0];
+          let reader = new FileReader();
+          reader.addEventListener('load', e => {
+            if(number === 1){
+              that.oneImg = e.target.result;
+              let [, base64] = that.oneImg.split(',');
+              let imgList = {
+                size: file.size,
+                type: file.type,
+                name: file.name,
+                base64: base64
+              }
+              that.imgList1 = imgList
+            }
+            if(number === 2){
+              that.twoImg = e.target.result;
+              let [, base64] = that.twoImg.split(',');
+              let imgList = {
+                size: file.size,
+                type: file.type,
+                name: file.name,
+                base64: base64
+              }
+              that.imgList2 = imgList
+            }
+            if(number === 3){
+              that.threeImg = e.target.result;
+              let [, base64] = that.threeImg.split(',');
+              let imgList = {
+                size: file.size,
+                type: file.type,
+                name: file.name,
+                base64: base64
+              }
+              that.imgList3 = imgList
+            }
+          });
+
+          reader.readAsDataURL(file);
+        }
+      },
       commit(){
         this.requestParams.userId=cookieUtil.getCookie("userId");
         this.requestParams.suggest=this.desc;
         this.requestParams.type=this.checkIndex+1;
         this.requestParams.phone=this.phone;
-        this.imgList.forEach(function (value,key) {
-          that.requestParams["image"+(key+1)]="data:" + value.type + ";base64," + value.base64;
-        });
-        console.log(this.checkIndex);
+        if(this.imgList1){
+          this.requestParams.image1= "data:" + this.imgList1.type + ";base64," + this.imgList1.base64;
+        }
+        if(this.imgList2){
+          this.requestParams.image2= "data:" + this.imgList2.type + ";base64," + this.imgList2.base64;
+        }
+        if(this.imgList3){
+          this.requestParams.image3= "data:" + this.imgList3.type + ";base64," + this.imgList3.base64;
+        }
         if(!this.requestParams.type){
           Toast({
             message: '请选择反馈类型',
@@ -110,7 +180,7 @@
         let txtVal = this.desc.length;
         this.remnant = txtVal;
       },
-      handleChange(file,fileList){
+      /*handleChange(file,fileList){
         let that = this;
         // console.log(file.length);
         let image = file.raw;
@@ -126,8 +196,8 @@
           };
           that.imgList.push(files);
         };
-      },
-      handleRemove(file, fileList) { //file->被删除项  //剩下的照片
+      },*/
+      /*handleRemove(file, fileList) { //file->被删除项  //剩下的照片
         //console.log(file, fileList);
         let that = this;
         that.imgList = [];
@@ -148,28 +218,11 @@
                 that.imgList.push(files);
             }
         });
-      },
-      handlePictureCardPreview(file) {
+      },*/
+      /*handlePictureCardPreview(file) {
         this.dialogImageUrl = file.url;
         this.dialogVisible = true;
-      },
-      handleImageScucess(id,fileList){
-        // console.log(fileList);
-        let that = this;
-        let file = fileList.raw;
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function(e){
-            let [, base64] = this.result.split(',');
-            let files = {
-              size: file.size,
-              type: file.type,
-              name: file.name,
-              base64: base64 // 这个就是base64编码了
-            };
-            that.imgList.push(files);
-        }
-      },
+      },*/
       Check(index){
         this.checkIndex = index;
       }

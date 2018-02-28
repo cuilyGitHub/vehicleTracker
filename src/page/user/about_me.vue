@@ -122,7 +122,7 @@
         let that = this;
         if (this.userInfo.isBindWechat === 1) {
             MessageBox.confirm('是否解绑微信且关闭页面').then(action => {
-              this.$api.post('/user/clientUnBindWeChat.do', {
+              this.$api.post('/user/clientUnBindWeChat.do', { //解绑微信
                 user: cookieUtil.getCookie("user")
               }, function (success) {
                 if(success.status === 0){
@@ -140,7 +140,7 @@
 
             });
           } else {
-            this.$api.post('/user/clientBindWeChat.do', {
+            this.$api.post('/user/clientBindWeChat.do', {  //绑定微信
               user: cookieUtil.getCookie("user"),
               wechatOpenId:null,
               wechartUnionId:null

@@ -22,7 +22,10 @@
                 <span class="des">已认证</span>
             </mt-cell>
         </router-link>
-         <router-link class='secure' v-show="!name"  v-bind:to="'identityapple'">
+        <mt-cell title="实名认证" is-link v-show="audit">
+          <span class="des">审核中</span>
+        </mt-cell>
+        <router-link class='secure' v-show="!name && !audit"  v-bind:to="'identityapple'">
             <mt-cell title="实名认证" is-link>
                 <span class="des">未认证</span>
             </mt-cell>
@@ -35,23 +38,28 @@
         name:'secure-panel',
         data () {
             return {
+              audit:null,
               phone:null,
               email:null,
               name:null,
             }
         },
         created () {
+          this.audit = this.$route.query.audit?this.$route.query.audit:false;
           let that = this;
-          this.$api.get('/user/client_get_user_info.do', {
-            user: cookieUtil.getCookie("user")
-          }, function (success) {
-            that.phone = success.result.phone;
-            that.email = success.result.email;
-            that.name = success.result.name;
-            console.log(success.result)
-          }, function (error) {
+          if(!this.audit){
+            this.$api.get('/user/client_get_user_info.do', {
+              user: cookieUtil.getCookie("user")
+            }, function (success) {
+              that.phone = success.result.phone;
+              that.email = success.result.email;
+              that.name = success.result.name;
+              console.log(success.result)
+            }, function (error) {
 
-          })
+            })
+          }
+
         },
         mounted() {
 

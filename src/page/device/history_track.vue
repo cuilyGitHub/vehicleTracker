@@ -12,7 +12,7 @@
         <li class="li">
           <span class="des">开始时间:</span>
           <div class="text" @click="open('start')">{{startTime | formatDate}}</div>
-        </li >
+        </li>
         <li class="li">
           <span class="des">结束时间:</span>
           <div class="text" @click="open('end')">{{endTime | formatDate}}</div>
@@ -24,11 +24,11 @@
         <!--<span class="sure" @click="submitData">确定</span>-->
       </div>
     </div>
-    <mt-datetime-picker ref="start" type="date" v-model="startTime"
-                        year-format="{value} 年" month-format="{value} 月" date-format="{value} 日" @confirm="start">
+    <mt-datetime-picker ref="start" type="datetime" v-model="startTime1"
+                        year-format="{value} " month-format="{value} " date-format="{value} " @confirm="start">
     </mt-datetime-picker>
-    <mt-datetime-picker ref="end" type="date" v-model="endTime"
-                        year-format="{value} 年" month-format="{value} 月" date-format="{value} 日" @confirm="end">
+    <mt-datetime-picker ref="end" type="dateTime" v-model="endTime1"
+                        year-format="{value} " month-format="{value} " date-format="{value} " @confirm="end">
     </mt-datetime-picker>
   </div>
 </template>
@@ -42,9 +42,12 @@ import gpsPoi from '../../utils/gpsPoi';
     name:'index',
     data () {
       return {
+        startTime1:new Date(),
+        endTime1:new Date(),
+
         showDatePanel:false,
-        startTime:new Date(),
-        endTime:new Date(),
+        startTime:null,
+        endTime:null,
         startUnix:null,
         endUnix:null,
         localStartUnix:null,
@@ -74,22 +77,23 @@ import gpsPoi from '../../utils/gpsPoi';
       }
     },
     created(){
-      if(sessionStorage.getItem('startUnix')){
-        this.getData();
-        return;
-      }
+      this.startTime  = new Date();
+      this.endTime = new Date();
       let date = this.startTime;
       let month = date.getMonth()+1;
       let day = date.getDate();
-      let hours = date.getHours();
       if (month < 10 ) {
         month= "0" + month;
       }
       if (day < 10 ) {
         day = "0" + day ;
       }
-      date = date.getFullYear() +"-"+month+'-'+day+' '+hours+':'+'00:00';
+      date = date.getFullYear() +"/"+month+'/'+day+' '+'00:00:00';
       this.startTime = date;
+      if(sessionStorage.getItem('startUnix')){
+        this.getData();
+        return;
+      }
       //this.submitData();
       this.getData();
     },
@@ -100,10 +104,6 @@ import gpsPoi from '../../utils/gpsPoi';
         window.bMap.centerAndZoom(new BMap.Point(116.404, 39.915), 10);  // 初始化地图,设置中心点坐标和地图级别
         this.map = new L.Map('track');
       })
-    },
-
-    watch:{
-
     },
     methods:{
       open(picker) {
@@ -120,26 +120,26 @@ import gpsPoi from '../../utils/gpsPoi';
       },
       yesterDay(value){
         this.startTime = GetFirstFewDays(value);
-        this.endTime = formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss');
+        this.endTime = GetFirstFewDays(0);
+        console.log(this.endTime);
       },
       beforeYesterday(value){
         this.startTime = GetFirstFewDays(value);
-        this.endTime = formatDate(new Date(), 'yyyy-MM-dd hh:mm:ss');
+        this.endTime = GetFirstFewDays(-1);
       },
       formatTime(){
-        console.log(this.startTime);
         if(sessionStorage.getItem('startUnix')){
           this.localStartUnix = Number(sessionStorage.getItem('startUnix'));
           this.localEndUnix = Number(sessionStorage.getItem('endUnix'));
           return false;
         }
         if(this.startTime instanceof Date){
-          var startUnix = stringToDate(formatDate(this.startTime, 'yyyy-MM-dd hh:mm:ss'));
+          var startUnix = stringToDate(formatDate(this.startTime, 'yyyy/MM/dd hh:mm:ss'));
         }else {
           var startUnix = stringToDate(this.startTime);
         }
         if(this.endTime instanceof Date){
-          var endUnix = stringToDate(formatDate(this.endTime, 'yyyy-MM-dd hh:mm:ss'));
+          var endUnix = stringToDate(formatDate(this.endTime, 'yyyy/MM/dd hh:mm:ss'));
         }else {
           var endUnix = stringToDate(this.endTime);
         }
@@ -219,14 +219,14 @@ import gpsPoi from '../../utils/gpsPoi';
 
 
 
-      submitData(){
+      /*submitData(){
         if(this.startTime instanceof Date){
-          var startUnix = stringToDate(formatDate(this.startTime, 'yyyy-MM-dd hh:mm:ss'));
+          var startUnix = stringToDate(formatDate(this.startTime, 'yyyy/MM/dd hh:mm:ss'));
         }else {
           var startUnix = stringToDate(this.startTime);
         }
         if(this.endTime instanceof Date){
-          var endUnix = stringToDate(formatDate(this.endTime, 'yyyy-MM-dd hh:mm:ss'));
+          var endUnix = stringToDate(formatDate(this.endTime, 'yyyy/MM/dd hh:mm:ss'));
         }else {
           var endUnix = stringToDate(this.endTime);
         }
@@ -280,12 +280,12 @@ import gpsPoi from '../../utils/gpsPoi';
         }, function (error) {
           console.log(error);
         })
-      }
+      }*/
     },
     filters: {
       formatDate(time) {
         var date = new Date(time);
-        return formatDate(date, 'yyyy-MM-dd hh:mm:ss');
+        return formatDate(date, 'yyyy/MM/dd hh:mm:ss');
       }
     },
   }
@@ -361,7 +361,7 @@ import gpsPoi from '../../utils/gpsPoi';
     color: #595959;
     border: 1px solid #ebebeb;
     border-radius: 10px;
-    padding: 0.2rem 0.25rem;
+    padding: 0.15rem 0.25rem;
     float: left;
     margin-right: 0.3rem;
   }

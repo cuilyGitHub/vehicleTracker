@@ -60,12 +60,11 @@
           }
           // 设置下一个路由的 meta
           to.meta.keepAlive = false;  // 让 railcard 不缓存，即刷新
-          cookieUtil.delCookie('railCardData');
           next();
         },
         created(){
           this.getRail();
-          cookieUtil.delCookie('addName');
+          sessionStorage.removeItem('addName');
           cookieUtil.delCookie('addLat');
           cookieUtil.delCookie('addLng');
           cookieUtil.delCookie('addRadius');
@@ -82,21 +81,27 @@
                 MessageBox.alert(des,'提示');
             },
             delCookie(){
-              cookieUtil.delCookie('railCardData');
               cookieUtil.delCookie('lat');
               cookieUtil.delCookie('lng');
               cookieUtil.delCookie('radius');
+
+              cookieUtil.delCookie('addIsIn');
+              cookieUtil.delCookie('addIsOut');
+              cookieUtil.delCookie('addStartTime');
+              cookieUtil.delCookie('addEndTime');
+              cookieUtil.delCookie('addName');
+              cookieUtil.delCookie('addRadius');
             },
             goDrawRail(data){
               console.log(data);
               this.delCookie();
               this.$router.push({path:'drawrail',query:{serialNo:this.requestParams.serialNo  , enterType:1 , radius:data.radius , railId:data.id}});
-              cookieUtil.setCookie('railCardData',JSON.stringify(data),7);
+
             },
             edit(data){
                 this.delCookie();
                 this.$router.push({path:'/railcard/update',query:{serialNo:this.requestParams.serialNo , dataJson :JSON.stringify(data) ,lng : this.$route.query.lng , lat : this.$route.query.lat}});
-                cookieUtil.setCookie('railCardData',JSON.stringify(data),7);
+
             },
             getRail(){
               let that = this;
@@ -139,8 +144,7 @@
             },
             addRail(){
               this.delCookie();
-              console.log(this.$route.query.lng);
-              this.$router.push({path:'/railcard/new',query:{serialNo :this.requestParams.serialNo ,lng : this.$route.query.lng , lat : this.$route.query.lat}})
+              this.$router.push({path:'/railcard/new',query:{serialNo :this.requestParams.serialNo ,lng : this.$route.query.lng, lat : this.$route.query.lat}})
             }
         }
     }

@@ -5,11 +5,11 @@
         <router-link class='secure' v-bind:to="'/searchlist/manager'">
           <input class="input" type="text" placeholder="设备编号、绑定物名字、通讯号" readonly/>
         </router-link>
-        <router-link class='secure' v-bind:to="{name:'deviceadd',query:{routeFrom:'devicemanager'}}">
+        <div class='secure' @click="goAddDeice">
           <span class="add-icon"></span>
-        </router-link>
+        </div>
       </div>
-      <div class="tab">
+      <div class="tab clearfix">
         <span class="tab-item" :class="{ 'select': requestParams.type == 0}"
               v-if="devicesResult.totalDevice > 99"
               @click='screen(0);'>全部(99+)</span>
@@ -56,7 +56,7 @@
             <span class="btn" @click="cancelSelect">取消</span>
           </div>
           <li v-for='item in list'>
-            <input v-if="selectRecharge" :id="item.serialNo" class="check" name="rechargeDevices" type="checkbox" @click="selectDevice(item.deviceId,$event);"/>
+            <input v-if="selectRecharge" :id="item.serialNo" class="check1" name="rechargeDevices" type="checkbox" @click="selectDevice(item.deviceId,$event);"/>
             <img v-else="selectRecharge" src="../../../static/image/defaultCar.png" alt="">
             <div @click="openBottomPopup(item)">
               <div class="content">
@@ -82,7 +82,7 @@
                   <span class="btn">详情</span>
                 </router-link>
               </div>
-              <div class="device" v-if="showRecharge">
+              <div class="device-recharge" v-if="showRecharge">
                 <P class="des" v-if="item.isExpired === 1">过期</P>
                 <P class="des" v-if="item.isExpired === 0">未过期</P>
                 <!--<router-link class='secure' v-bind:to="{path:'devicecard',params:{deviceId : item.serialNo}}">-->
@@ -199,7 +199,12 @@
     deactivated() {
       this.popupValue.popupVisible = false;
     },
+
     methods: {
+      goAddDeice(){
+        sessionStorage.removeItem('deviceAddInfo');
+        this.$router.push({name:'deviceadd',query:{routeFrom:'devicemanager'}});
+      },
       openAlert(content) {
         MessageBox.alert(content, '提示');
       },
@@ -348,6 +353,7 @@
         this.recharge(deviceIds);
       },
       recharge(deviceIds){
+        //window.location.href = 'https://www.baidu.com/';
         this.$api.get("/financial/chargeOrder/order.do", {
           sources:1,
           deviceIds: deviceIds,
@@ -362,23 +368,6 @@
         }, function (failure) {
 
         })
-        // this.$api.get("/financial/chargeOrder/order.do", {
-        //   sources: 1,
-        //   deviceIds: deviceIds
-        // }, function (success) {
-        //   Indicator.open('请稍后...');
-        //   if (success.status === 0) {
-        //     Indicator.close();
-        //   }else {
-        //     Indicator.close();
-        //     Toast({
-        //       message: '请求失败，请稍后再试',
-        //       position: 'bottom',
-        //     });
-        //   }
-        // }, function (error) {
-        //   MessageBox.alert("连接服务器失败，请检查您的网络连接")
-        // })
       },
       goodDevice(){  //设备已修
         MessageBox.confirm('确认设备已经完成修复？能够正常使用?').then(action => {

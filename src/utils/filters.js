@@ -18,17 +18,18 @@ export function formatDate(date, fmt) {
             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str));
         }
     }
-    return fmt;
+  console.log(fmt);
+  return fmt;
 };
 
 function padLeftZero(str) {
     return ('00' + str).substr(str.length);
 }
 
-/* 'yyyy-MM-dd HH:mm:ss'格式的字符串转日期 */
+/* 'yyyy/MM/dd HH:mm:ss'格式的字符串转日期 */
 export function stringToDate(str){
-  var tempStrs = str.split(" ");
-    var dateStrs = tempStrs[0].split("-");
+    var tempStrs = str.split(" ");
+    var dateStrs = tempStrs[0].split("/");
     var year = parseInt(dateStrs[0], 10);
     var month = parseInt(dateStrs[1], 10) - 1;
     var day = parseInt(dateStrs[2], 10);
@@ -42,9 +43,10 @@ export function stringToDate(str){
 
 /*
 　*计算前几天的日期
-　*返回格式为：yyyy-MM-dd HH:mm:ss
+　*返回格式为：yyyy/MM/dd HH:mm:ss
 */
 export function GetFirstFewDays(AddDayCount) {
+  console.log(AddDayCount);
   var dd = new Date();
   dd.setDate(dd.getDate()+AddDayCount);//获取AddDayCount天后的日期
   var CurrentDate = "";
@@ -54,11 +56,11 @@ export function GetFirstFewDays(AddDayCount) {
   var hour=dd.getHours();
   var minute=dd.getMinutes();
   var second=dd.getSeconds();
-  CurrentDate += year + "-";
+  CurrentDate += year + "/";
   if (month >= 10 ) {
-    CurrentDate += month + "-";
+    CurrentDate += month + "/";
   } else {
-    CurrentDate += "0" + month + "-";
+    CurrentDate += "0" + month + "/";
   }
   if (date >= 10 ) {
     CurrentDate += date ;
@@ -75,7 +77,8 @@ export function GetFirstFewDays(AddDayCount) {
   } else {
     second = "0" + second ;
   }
-  return CurrentDate+" "+hour+":"+minute+":"+second;
+  return CurrentDate+" "+"00:00:00";
+  //return CurrentDate+" "+hour+":"+minute+":"+second;
   //return CurrentDate;
 }
 

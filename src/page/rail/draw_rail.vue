@@ -49,11 +49,10 @@ import gpsPoi from '../../utils/gpsPoi';
     },
     beforeRouteLeave(to, from, next) {
       // 设置下一个路由的 meta
-      to.meta.keepAlive = true;  // 让 railcard 缓存，即不刷新
+      to.meta.keepAlive = false;  // 让 railcard 不缓存，即刷新
       next();
     },
     mounted() {
-      console.log(this.$route.query);
       this.$nextTick(function () {
         var windowHeight = document.documentElement.clientHeight;
         var controlHeight = document.getElementById('control').clientHeight;
@@ -102,6 +101,7 @@ import gpsPoi from '../../utils/gpsPoi';
           if(cookieUtil.getCookie('addLat')){
             this.cardData.centerLatitude = cookieUtil.getCookie('addLat');
           }else {
+            console.log(this.$route.query.lat);
             this.cardData.centerLatitude = this.$route.query.lat;
           }
           if(cookieUtil.getCookie('addLng')){
@@ -112,10 +112,10 @@ import gpsPoi from '../../utils/gpsPoi';
           if(this.$route.query.addName != null) {
             cookieUtil.setCookie("addName" , this.$route.query.addName);
           }
-
           this.initMap();
         }
-      },initMap() {
+      },
+      initMap() {
         let that = this;
         this.map.centerAndZoom(new BMap.Point(this.cardData.centerLongitude, this.cardData.centerLatitude), 14);
         this.darwCircle();
@@ -123,8 +123,6 @@ import gpsPoi from '../../utils/gpsPoi';
             that.darwCircle();
         });
       },
-
-
       darwCircle() {
         this.map.clearOverlays();
         var center = this.map.getCenter();

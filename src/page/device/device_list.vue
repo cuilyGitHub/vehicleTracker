@@ -5,9 +5,9 @@
           <router-link class='secure' v-bind:to="'/searchlist/list'">
             <input class="input" type="text" placeholder="设备编号、绑定物名字、通讯号" readonly />
           </router-link>
-          <router-link class='secure' v-bind:to="{name:'deviceadd',query:{routeFrom:'devicelist'}}">
+          <div class='secure' @click="goAddDeice">
             <span class="add-icon"></span>
-          </router-link>
+          </div>
         </div>
         <div class="tab">
           <span class="tab-item bg-color" :class="{ 'select': deviceStatus == 0}"  @click='getDeviceStatus(0);'>行驶</span>
@@ -18,7 +18,7 @@
           <span class="tab-item pulldown" :class="{ 'select': labelStatus == 1}" @click='screen(1);'><span class="arrow" v-bind:class="{open:!tagClass,close:tagClass}"></span>标签</span>
         </div>
 
-        <div class="mask" :class='{show:isShowMask}'></div>
+        <div class="mask" :class='{show:isShowMask}' @click="close"></div>
 
         <div class="tab-box" :class="{show:isShowAlarm}">
           <div class="label-box clearfix">
@@ -98,8 +98,8 @@
           serialNo:null,
         },
 
-        policeClass:false,
-        tagClass:false,
+        policeClass:false, //报警箭头样式
+        tagClass:false, //标签箭头样式
         allLoaded: false,
         totalPage:0,
         bottomStatus: '',
@@ -150,19 +150,30 @@
       }else if(data && data.fieldType != 1){
         this.requestParams.serialNo = data.fieldId;
       }
-      this.getDevices();//初次访问查询列表
+      this.getDevices(true);//初次访问查询列表
 
     },
+
     mounted() {
       this.wrapperHeight = document.documentElement.clientHeight;
       localStorage.removeItem('deviceId');
     },
     beforeRouteLeave(to, from, next) {
       // 设置下一个路由的 meta
-      to.meta.keepAlive = true;  // B 跳转到 A 时，让 A 缓存，即不刷新
+      to.meta.keepAlive = true;  // B 跳转到 A 时，让 A 缓存，即不刷
       next();
     },
     methods: {
+      goAddDeice(){
+        sessionStorage.removeItem('deviceAddInfo');
+        this.$router.push({name:'deviceadd',query:{routeFrom:'devicelist'}});
+      },
+      close(){
+        this.labelStatus = null;
+        this.policeClass = false;
+        this.tagClass = false;
+        this.getDevices(true);
+      },
       getDeviceStatus(deviceStatus){   //查询设备停使
         if(this.deviceStatus != deviceStatus) {
           this.isShowMask = false;
@@ -181,7 +192,7 @@
         }
         this.requestParams.pageNum = 1;
         this.requestParams.runningState = this.deviceStatus;
-        this.getDevices();
+        this.getDevices(true);
       },
       screen(status){   //根据报警和标签筛选
         if(this.status != status){
@@ -289,7 +300,7 @@
           tagList[i].className = 'label';
         }
         this.requestParams.tags = '';
-        this.getDevices();
+        this.getDevices(false);
       },
       clearAlarm(){ //重置报警
         this.policeClass = false;
@@ -302,7 +313,7 @@
           alarmList[i].className = 'label';
         }
         this.requestParams.warningType = '';
-        this.getDevices();
+        this.getDevices(false);
       },
       getTag(){  //提交标签
         this.policeClass = false;
@@ -313,7 +324,7 @@
         if(this.requestParams.tags === ''){
           this.labelStatus = null;
         }
-        this.getDevices();
+        this.getDevices(true);
       },
       getAlarm(){ //提交报警
         this.policeClass = false;
@@ -323,9 +334,9 @@
         if(this.requestParams.warningType === ''){
           this.labelStatus = null;
         }
-        this.getDevices();
+        this.getDevices(true);
       },
-      getDevices() { //初次加载获取设备列表信息
+      getDevices(closePanel) { //初次加载获取设备列表信息
         let that = this;
         //this.requestParams.pageNum = 1;
         this.$api.get("/device/device/clientFilterDevicesList.do",{
@@ -345,9 +356,11 @@
               });
             }
             that.listData = data.result.list;
-            that.isShowMask = false;
-            that.isShowLabel = false;
-            that.isShowAlarm = false;
+            if(closePanel){
+              that.isShowLabel = false;
+              that.isShowAlarm = false;
+              that.isShowMask = false;
+            }
             that.isHidden = false;
             that.totalPage = Math.ceil(data.result.totalNum/that.requestParams.pageSize);
             if(that.totalPage === 1){

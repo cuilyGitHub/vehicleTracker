@@ -9,7 +9,8 @@
           <div class="photo">绑定物照片</div>
           <div class="arrow"></div>
           <div class="base64-upload clearfix">
-            <div class="img" :style="{background: 'url('+detailData.photo+') no-repeat center'}"  ></div>
+            <img class="img" :src="detailData.photo"  alt=""/>
+            <!--<div class="img" :style="{background: 'url('+detailData.photo+') no-repeat center'}"  ></div>-->
             <input type="file"  accept="image/*" @change="onChangeImage" />
           </div>
         </div>
@@ -312,6 +313,7 @@
           installPosition:this.check+1,
           installDevice:this.specificCheck+1
         }, function (success) {
+          sessionStorage.removeItem('deviceAddInfo');
           if(success.status === 0){
             if(that.routeForm === 'editdevicebind' || that.routeForm === 'deviceadd' || that.routeForm === 'bindexisting'){
               that.$router.push({name:'deviceadd',query:{serialNo:that.serialNo}})
@@ -320,12 +322,11 @@
             }else {
               that.$router.push({name:'devicelist',query:{serialNo:that.serialNo}})
             }
-          }else {
+            return
+          }
+          if(success.status === 1) {
             that.openAlert(success.message);
           }
-          console.log(success);
-
-
         },function (error) {
           console.log(error);
         })
@@ -381,7 +382,7 @@
     filters: {
       formatDate(time) {
         var date = new Date(time);
-        return formatDate(date, 'yyyy年MM月dd日');
+        return formatDate(date, 'yyyy/MM/dd');
       }
     }
   };

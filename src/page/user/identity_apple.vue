@@ -33,8 +33,8 @@
     name:'identityapple',
     data () {
       return {
-        frontImageSrc: "../../../static/image/frontViewPhoto.png",
-        backImageSrc:"../../../static/image/backViewPhoto.png",
+        frontImageSrc:this.$api.root+"/wechat/static/image/frontViewPhoto.png",
+        backImageSrc:this.$api.root+"/wechat/static/image/backViewPhoto.png",
 
         idCardName:null,
         idCardNumber:null,
@@ -62,8 +62,8 @@
           let file = event.target.files[0]
           let reader = new FileReader()
           reader.addEventListener('load', e => {
-            that.frontImageSrc = e.target.result
-            let [, base64] = that.frontImageSrc.split(',')
+            that.frontImageSrc = e.target.result;
+            let [, base64] = that.frontImageSrc.split(',');
             let imgList = {
               size: file.size,
               type: file.type,
@@ -72,7 +72,6 @@
             }
             this.frontViewPhoto = imgList;
           })
-          console.log(file);
           reader.readAsDataURL(file);
         }
       },
@@ -92,7 +91,6 @@
             }
             this.backViewPhoto = imgList;
           })
-          console.log(file);
           reader.readAsDataURL(file);
         }
       },
@@ -108,7 +106,7 @@
           if (success.status === 0) {
             //修改成功
             MessageBox.alert("提交成功!");
-            that.$router.push({ path: '/secure' });
+            that.$router.push({ path: '/secure',query:{audit:true} });
           } else {
             MessageBox.alert(success.message)
           }

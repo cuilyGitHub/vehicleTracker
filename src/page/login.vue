@@ -75,11 +75,11 @@
           return;
         }
         let that = this;
-        //this.$api.post("/client_login.do",{
         this.$api.post("/changeBind.do",{
           user: this.name,
           password: this.password
         },function (success) {
+          //window.alert(JSON.stringify(success));
           console.log(success);
           if(success.status === 0){
             cookieUtil.setCookie("accessToken",success.result.accessToken);

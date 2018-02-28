@@ -24,12 +24,9 @@
     <mt-datetime-picker ref="end" type="date" v-model="endTime"
                         year-format="{value} 年" month-format="{value} 月" date-format="{value} 日" @confirm="end">
     </mt-datetime-picker>
-
-    <router-link class='link' :to="{path:'/drawrail',query:{railId : cardData.id , enterType:2 , radius:cardData.radius , isNew:$route.params.id , lng : this.$route.query.lng , lat : this.$route.query.lat , addName : cardData.name}}">
-      <mt-cell title="半径" is-link>
-        <span class="des">{{cardData.radius/1000}}km</span>
-      </mt-cell>
-    </router-link>
+    <mt-cell title="半径" @click.native="goDrawRail" is-link >
+      <span class="des">{{cardData.radius/1000}}km</span>
+    </mt-cell>
     <div class="push">
       <div v-if="$route.params.id === 'new'" class="blue-btn" @click="addCircleRail()">保存</div>
       <div v-if="$route.params.id === 'update'" class="blue-btn" @click="updateRail()">保存</div>
@@ -72,10 +69,12 @@
       },
       outChange(event){
         this.cardData.isOut = !event;
+        console.log(this.cardData.isOut);
         cookieUtil.setCookie("addIsOut" ,  this.cardData.isOut);
       },
       intoChange(event){
         this.cardData.isIn = !event;
+        console.log(this.cardData.isIn);
         cookieUtil.setCookie("addIsIn" ,  this.cardData.isIn);
       },
       open(picker) {
@@ -89,13 +88,18 @@
         this.cardData.endTime = formatDate(value, 'yyyy/MM/dd');
         cookieUtil.setCookie("addEndTime" ,  this.cardData.endTime);
       },
+      goDrawRail(){
+        sessionStorage.setItem("addName" ,  this.cardData.name);
+        sessionStorage.setItem("serialNo" ,  this.$route.query.serialNo);
+        this.$router.push({path:'/drawrail',query:{railId : this.cardData.id , enterType:2 , radius:this.cardData.radius , isNew:this.$route.params.id ,
+                                                  lng : this.$route.query.lng , lat : this.$route.query.lat , addName : this.cardData.name}})
+      },
       getRailById(id) {
         console.log("getRailById = " + id);
         var globalThis = this;
          this.$api.get("/rail/rail/clientGetRailInfo.do", {
            railId:id
           }, function (success) {
-            console.log(success + "success");
             if(success.status === 0){
               globalThis.cardData.id = success.result.id;
               globalThis.cardData.name = success.result.name;
@@ -133,9 +137,8 @@
         if(this.$route.query.dataJson){
           var dataJson = this.$route.query.dataJson;
           var cardData = JSON.parse(dataJson);
-          this.getRailById( cardData.id);
+          this.getRailById(cardData.id);
         }else {
-
           this.cardData.centerLatitude = this.$route.query.lat;
           this.cardData.centerLongitude = this.$route.query.lng;
           if(cookieUtil.getCookie("addLat") && cookieUtil.getCookie("addLat") != null) {
@@ -144,8 +147,8 @@
           if(cookieUtil.getCookie("addLng")&& cookieUtil.getCookie("addLng") != null) {
             this.cardData.centerLongitude = cookieUtil.getCookie("addLng");
           }
-          if(cookieUtil.getCookie("addName")&& cookieUtil.getCookie("addName") != null) {
-            this.cardData.name = cookieUtil.getCookie("addName");
+          if(sessionStorage.getItem("addName")&& sessionStorage.getItem("addName") != 'null') {
+            this.cardData.name = sessionStorage.getItem("addName");
           }
           if(cookieUtil.getCookie("addRadius")&& cookieUtil.getCookie("addRadius") != null) {
               this.cardData.radius = cookieUtil.getCookie("addRadius");
@@ -153,16 +156,16 @@
               this.cardData.radius = 500;
           }
           if(cookieUtil.getCookie("addStartTime")&& cookieUtil.getCookie("addStartTime") != null) {
-            this.cardData.startTime = cookieUtil.getCookie("addStartTime");
+            this.cardData.beginTime = cookieUtil.getCookie("addStartTime");
           }
           if(cookieUtil.getCookie("addEndTime")&& cookieUtil.getCookie("addEndTime") != null) {
-            this.cardData.startTime = cookieUtil.getCookie("addEndTime");
+            this.cardData.endTime = cookieUtil.getCookie("addEndTime");
           }
           if(cookieUtil.getCookie("addIsIn")&& cookieUtil.getCookie("addIsIn") != null) {
-              this.cardData.isIn = cookieUtil.getCookie("addIsIn");
+              this.cardData.isIn = eval(cookieUtil.getCookie("addIsIn").toLowerCase());
           }
           if(cookieUtil.getCookie("addIsOut")&& cookieUtil.getCookie("addIsOut") != null) {
-              this.cardData.isOut = cookieUtil.getCookie("addIsOut");
+              this.cardData.isOut = eval(cookieUtil.getCookie("addIsOut").toLowerCase());
           }
         }
       },
@@ -245,7 +248,7 @@
     filters: {
       formatDate(time) {
         var date = new Date(time);
-        return formatDate(date, 'yyyy年MM月dd日');
+        return formatDate(date, 'yyyy/MM/dd');
       }
     },
 

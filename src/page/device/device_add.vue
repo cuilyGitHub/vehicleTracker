@@ -66,8 +66,22 @@
       this.wechatConfig(_wx);
       if(this.$route.query.serialNo){
         this.serialNo = this.$route.query.serialNo;
-        this.getDeviceInfoBySerialNo()
+        this.getDeviceInfoBySerialNo();
         this.blueBtn = true;
+      }
+      let deviceAddInfo = sessionStorage.getItem('deviceAddInfo');
+      if(deviceAddInfo){
+        deviceAddInfo = JSON.parse(deviceAddInfo)
+        this.serialNo = deviceAddInfo.serialNo;
+        this.phone = deviceAddInfo.phone;
+        this.startTime = this.formatDate(deviceAddInfo.createTime);
+        this.endTime = this.formatDate(deviceAddInfo.expireAt);
+        this.deviceModel = deviceAddInfo.deviceType;
+        this.number = deviceAddInfo.number;
+        deviceAddInfo.carName ? that.bindThing = deviceAddInfo.carName : this.bindThing = '绑定物品';
+        //,0-未激活,1-使用,2-损坏
+        this.blueBtn = true;
+        this.$forceUpdate();
       }
 		},
 		activated: function() {
@@ -217,6 +231,7 @@
 					serialNo: this.serialNo
 				}, function(success) {
 					if(success.status === 0) {
+					  sessionStorage.setItem('deviceAddInfo',JSON.stringify(success.result));
 						that.phone = success.result.phone;
 						that.startTime = that.formatDate(success.result.createTime);
 						that.endTime = that.formatDate(success.result.expireAt);
@@ -228,7 +243,6 @@
             that.$forceUpdate();
 					} else {
 						MessageBox.alert(success.message, '提示');
-						//alert(success.message)
 					}
 				}, function(error) {
 					console.log(error);
@@ -276,9 +290,12 @@
 				return formatDate(date, 'yyyy-MM-dd');
 			},
 			jump() { //跳转前进行判断
+
 				if(!this.serialNo) {
 					MessageBox.alert('请输入设备编号', '提示');
-				} else if(this.bindThing != '绑定物品' && this.bindThing != null) {
+					return
+				}
+				if(this.bindThing != '绑定物品' && this.bindThing != null) {
 					this.$router.push({
 						path: '/newbind',
 						query: {
@@ -287,7 +304,9 @@
               route:'deviceadd'
 						}
 					})
-				} else if(this.bindThing === '绑定物品' || this.bindThing === null) {
+          return;
+				}
+				if(this.bindThing === '绑定物品' || this.bindThing === null) {
 					this.$router.push({
             path: '/editdevicebind',
             query: {
