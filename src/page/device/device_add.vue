@@ -214,7 +214,7 @@
               position: 'bottom',
             });
             if(that.routeFrom === 'devicemanager'){
-              that.$router.push({ path: '/devicemanager' });
+              that.$router.push({ path: '/devicemanager',query:{reload:true} });
             }else{
               that.$router.push({ path: '/devicelist' });
             }

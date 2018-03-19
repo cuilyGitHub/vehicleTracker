@@ -116,8 +116,9 @@
         <router-link class='secure' v-bind:to="{name:'tag',query:{deviceId : popupValue.data.serialNo}}">
           <div class="item"><img src="../../../static/image/label.png" alt="">设置标签</div>
         </router-link>
-        <router-link class='secure' v-bind:to="{name:'rail',query:{serialNo:popupValue.data.serialNo,routeForm:'deviceManager'}}">
-          <div class="item"><img src="../../../static/image/rail.png" alt="">设置电子围栏</div>
+        <router-link class='secure' v-bind:to="{path:'/railcard/new',query:{serialNo:popupValue.data.serialNo,lng:'0',lat:'0',routeForm:'deviceManager'}}">
+        <!--<router-link class='secure' v-bind:to="{name:'rail',query:{serialNo:popupValue.data.serialNo,routeForm:'deviceManager'}}">-->
+          <div class="item" @click="toDrawRail"><img src="../../../static/image/rail.png" alt="">设置电子围栏</div>
         </router-link>
         <router-link class='secure' v-bind:to="'/regionrailcard/new'">
           <div class="item"><img src="../../../static/image/regionrail.png" alt="">设置区域围栏</div>
@@ -132,7 +133,7 @@
         <router-link class='secure' v-bind:to="{name:'devicecard',query:{deviceId : popupValue.data.serialNo}}">
           <div class="item"><img src="../../../static/image/detail.png" alt="">设备详情</div>
         </router-link>
-        <div class="item" v-if="popupValue.data.usedState === 0" @click="setDeviceStatus(popupValue.data.serialNo,1,true);"><img src="../../../static/image/spoilage.png" alt="">激活设备</div>
+        <!--<div class="item" v-if="popupValue.data.usedState === 0" @click="setDeviceStatus(popupValue.data.serialNo,1,true);"><img src="../../../static/image/spoilage.png" alt="">激活设备</div>-->
         <div class="item" v-if="popupValue.data.usedState === 1" @click="setDeviceStatus(popupValue.data.serialNo,2);"><img src="../../../static/image/spoilage.png" alt="">设为损坏</div>
         <div class="item" v-else-if="popupValue.data.usedState === 2" @click="setDeviceStatus(popupValue.data.serialNo,1,true);"><img src="../../../static/image/spoilage.png" alt="">设为修复</div>
       </mt-popup>
@@ -144,6 +145,7 @@
   import {Indicator} from 'mint-ui';
   import {Toast} from 'mint-ui';
   import cookieUtil from '../../utils/utils'
+  import gpsPoi from '../../utils/gpsPoi';
   export default {
     data() {
       return {
@@ -174,7 +176,9 @@
           pageNum: 1,
           serialNo:null,
         },
-        totalContent:null
+        totalContent:null,
+        geolocationLng:null,
+        geolocationLat:null
       };
     },
     created() {
@@ -187,8 +191,9 @@
       this.getDevices();
     },
     activated(){
+      console.log(7);
       let data = this.$route.params.data;
-      console.log(data);
+      this.requestParams.serialNo = null;
       if(data && data.fieldType === 1){
         this.requestParams.tagId = data.fieldId;
       }else if(data){
@@ -241,6 +246,19 @@
         }, function (error) {
 
         })
+      },
+      toDrawRail(){
+        let that = this;
+        var geolocation = new BMap.Geolocation();
+        geolocation.getCurrentPosition(function(r){
+          if(this.getStatus() == BMAP_STATUS_SUCCESS){
+            var gdPoi = gpsPoi.bdTogd(r.point.lng , r.point.lat);
+            that.geolocationLng = gdPoi["lng"];
+            that.geolocationLat = gdPoi["lat"];
+            that.$router.push({path:'/railcard/new',query:{serialNo :that.requestParams.serialNo ,lng : that.geolocationLng, lat : that.geolocationLat}})
+          }
+        },{enableHighAccuracy: true});
+
       },
       handleBottomChange(status) {
         this.bottomStatus = status;

@@ -38,7 +38,7 @@
         </li>
         <li>
           <span class="name"><span>经</span><span>纬</span><span>度：</span></span>
-          <span class="value">{{repData.lastLocation.lng}},{{repData.lastLocation.lat}}</span>
+          <span class="value">{{repData.lastLocation.lng.toFixed(4)}},{{repData.lastLocation.lat.toFixed(4)}}</span>
         </li>
       </ul>
       <div class="btn-list">
@@ -112,10 +112,13 @@
 
 <script>
   import {formatDate} from '../../utils/filters.js';
+  import gpsPoi from '../../utils/gpsPoi';
   export default {
     data() {
       return {
         repData: {},
+        geolocationLng:null,
+        geolocationLat:null,
         deviceId: null,
         lastAddress:null
       };
@@ -124,6 +127,17 @@
       console.log(2);
       this.deviceId = this.$route.query.deviceId;
       this.fetchData();
+
+      //百度当前定位
+      let that = this;
+      var geolocation = new BMap.Geolocation();
+      geolocation.getCurrentPosition(function(r){
+        if(this.getStatus() == BMAP_STATUS_SUCCESS){
+          var gdPoi = gpsPoi.bdTogd(r.point.lng , r.point.lat);
+          that.geolocationLng = gdPoi["lng"];
+          that.geolocationLat = gdPoi["lat"];
+        }
+      },{enableHighAccuracy: true});
     },
     activated(){
       this.deviceId = this.$route.query.deviceId;
@@ -144,6 +158,12 @@
           if(success.status===0){
             console.log(success);
             that.repData = success.result;
+            if(success.result.lastLocation.lng === 0){
+              that.repData.lastLocation.lng = that.geolocationLng;
+            }
+            if(success.result.lastLocation.lat === 0){
+              that.repData.lastLocation.lat = that.geolocationLat;
+            }
             var point = new BMap.Point(success.result.lastLocation.lng,success.result.lastLocation.lat);
             var geoc = new BMap.Geocoder();
             geoc.getLocation(point, function(rs){

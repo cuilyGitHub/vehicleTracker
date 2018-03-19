@@ -10,7 +10,6 @@
           <div class="arrow"></div>
           <div class="base64-upload clearfix">
             <img class="img" :src="detailData.photo"  alt=""/>
-            <!--<div class="img" :style="{background: 'url('+detailData.photo+') no-repeat center'}"  ></div>-->
             <input type="file"  accept="image/*" @change="onChangeImage" />
           </div>
         </div>
@@ -126,8 +125,6 @@
       this.number = this.$route.query.number;
       this.routeForm = this.$route.query.route;
       if(this.number){
-        //this.$destroy(true);
-        console.log(7777);
         let that = this;
         this.$api.get('/car/car/clientQueryCarDetailInfo.do', {
           serialNo: this.serialNo,
@@ -140,7 +137,7 @@
               that.detailData.carName = that.detailData.number;
             }
             if(!that.detailData.photo){
-              that.detailData.photo = this.$api.root+'/wechat/static/image/userhead.png';
+              that.detailData.photo = that.$api.root+'/wechat/static/image/userhead.png';
             }else{
               that.detailData.photo = that.$api.root+success.result.photo;
             }
@@ -170,6 +167,8 @@
           this.detailData.installPosition=null;
           this.detailData.number=null;
           this.detailData.photo=this.$api.root+'/wechat/static/image/userhead.png';
+          this.check = null;
+          this.specificCheck = null;
         }
         if(deviceData.deviceData.brands != null){
           this.detailData.brand = deviceData.deviceData.brands;
@@ -210,7 +209,6 @@
           this.check = index;
         }
         this.specificCheck = null;
-        console.log("安装位置"+index);
       },
       openSpecific(){
         this.isShowSpecific = !this.isShowSpecific;
@@ -227,16 +225,41 @@
         MessageBox.alert(content, '提示');
       },
 
-      updateCarInfo(){//修改绑定物
+      isVehicleNumber(vehicleNumber) {  //校验车牌号
+        var result = false;
+        if (vehicleNumber.length == 7){
+          var express = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
+          result = express.test(vehicleNumber);
+        }
+        return result;
+      },
 
+      updateCarInfo(){//修改绑定物
         if(!this.detailData.number){
+          this.openAlert('填写车牌号');
+          return;
+        }
+        if(!this.isVehicleNumber(this.detailData.number)){
           this.openAlert('车牌号错误');
+          return;
+        }
+        if(this.detailData.brand === '请选择'){
+          this.openAlert('请选择车辆型号');
+          return;
+        }
+        if(this.detailData.color === '请选择'){
+          this.openAlert('请选择车辆颜色');
           return;
         }
         if(!this.detailData.driver){
           this.openAlert('请填写驾驶员');
           return;
         }
+        if(!this.check && !this.specificCheck){
+          this.openAlert('请填安装位置');
+          return;
+        }
+
         if(this.photoBase64){
           this.postPhoto = "data:" + this.photoBase64.type + ";base64," + this.photoBase64.base64;
         }
@@ -266,6 +289,10 @@
 
       addCarInfo(){ //添加新绑定物
         if(!this.detailData.number){
+          this.openAlert('填写车牌号');
+          return;
+        }
+        if(!this.isVehicleNumber(this.detailData.number)){
           this.openAlert('车牌号错误');
           return;
         }
@@ -273,12 +300,16 @@
           this.openAlert('请选择车辆型号');
           return;
         }
-        if(!this.detailData.color === '请选择'){
+        if(this.detailData.color === '请选择'){
           this.openAlert('请选择车辆颜色');
           return;
         }
         if(!this.detailData.driver){
           this.openAlert('请填写驾驶员');
+          return;
+        }
+        if(!this.check && !this.specificCheck){
+          this.openAlert('请填安装位置');
           return;
         }
         if(this.photoBase64){
@@ -348,7 +379,7 @@
           },function (success) {
             if (success.status === 0){
               that.$router.push({name:'editdevicebind',query:{serialNo:that.serialNo}})
-            }else {
+            }else if(success.status === 1){
               that.openAlert(success.message);
             }
           },function (error) {

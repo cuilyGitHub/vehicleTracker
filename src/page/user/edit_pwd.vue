@@ -48,7 +48,7 @@
     },
     watch:{
       newPass(curVal,oldVal){
-        if(this.newPass.length >= 15){
+        if(this.newPass.length >= 16){
           this.newPass = oldVal;
         }
       }
@@ -56,7 +56,6 @@
     methods: {
       commit(){
         let that = this;
-        console.log(that.newPass.length);
         if (that.oldPass === "" || that.oldPass === null) {
           MessageBox.alert("请输入旧密码",'提示');
           return
@@ -79,12 +78,11 @@
             Toast({
               message: '修改成功',
               position: 'bottom',
-            })
+            });
             that.$router.push({path:'/aboutme'});
-          } else {
+          }else if(success.status === 1) {
             MessageBox.alert(success.message,'提示');
           }
-          console.log(success)
         }, function (error) {
           console.log(error)
         })

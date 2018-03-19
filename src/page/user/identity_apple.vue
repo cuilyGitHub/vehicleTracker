@@ -2,7 +2,7 @@
   <div id="identityapple" class="identityapple-panel">
     <div class="box">
       <input type="text" class="input" v-model="idCardName" placeholder="真实姓名">
-      <input type="number" class="input" v-model="idCardNumber" placeholder="身份证号码">
+      <input type="text" class="input" v-model="idCardNumber" placeholder="身份证号码">
     </div>
     <div class="box">
       <div class="title">手持身份证照片</div>
